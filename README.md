@@ -18,7 +18,7 @@ A simple Vue.js gantt chart plugin for presenting weekly tasks.
 - Elegant gantt chart displaying using `Horizontal Spritesheet Algorithm`
 
 ## Usage & Guide
-To check out live examples and docs, visit [vue-easy-gantt Demo Pages](http://faso.me/vue-easy-gantt/).
+To check out live examples and docs, visit [vue-easy-gantt Demo Pages](https://mamboer.github.io/vue-easy-gantt/).
 
 ## Changelog
 Details changes for each release are documented in the [release notes](https://github.com/mamboer/vue-easy-gantt/releases).
