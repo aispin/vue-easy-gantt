@@ -43,6 +43,9 @@ npm install vue-easy-gantt dayjs
 <script setup lang="ts">
 import { ref } from 'vue'
 import EasyGantt from 'vue-easy-gantt'
+// Bundlers (Vite/webpack) inject the styles automatically via the package
+// entry, so this import is optional. UMD / <script> setups should link
+// dist/vue-easy-gantt.css instead.
 import 'vue-easy-gantt/style.css'
 
 const sdate = ref('2026-10-19') // a Monday

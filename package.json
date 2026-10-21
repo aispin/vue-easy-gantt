@@ -1,16 +1,18 @@
 {
   "name": "vue-easy-gantt",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A modern Vue 3 gantt chart component for presenting weekly tasks.",
   "type": "module",
   "main": "dist/vue-easy-gantt.js",
   "module": "dist/vue-easy-gantt.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/vue-easy-gantt.mjs",
       "require": "./dist/vue-easy-gantt.js"
     },
-    "./style.css": "./dist/style.css",
+    "./style.css": "./dist/vue-easy-gantt.css",
     "./package.json": "./package.json"
   },
   "files": [
@@ -44,7 +46,7 @@
   "homepage": "https://github.com/aispin/vue-easy-gantt#readme",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --config vite.lib.config.js",
+    "build": "vite build --config vite.lib.config.ts && vue-tsc -p tsconfig.build.json && node scripts/inject-css-import.mjs",
     "build:demo": "vite build --base=/vue-easy-gantt/",
     "preview": "vite preview",
     "test": "vitest run",
