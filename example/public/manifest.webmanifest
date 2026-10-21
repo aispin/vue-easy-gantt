@@ -1,0 +1,27 @@
+{
+  "name": "vue-easy-gantt",
+  "short_name": "easy-gantt",
+  "description": "A modern Vue 3 gantt chart component for presenting weekly tasks. TypeScript-native, themeable, SSR-safe.",
+  "start_url": "/vue-easy-gantt/",
+  "scope": "/vue-easy-gantt/",
+  "display": "standalone",
+  "background_color": "#050816",
+  "theme_color": "#050816",
+  "icons": [
+    {
+      "src": "/vue-easy-gantt/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/vue-easy-gantt/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/vue-easy-gantt/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

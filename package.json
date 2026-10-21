@@ -1,32 +1,34 @@
 {
   "name": "vue-easy-gantt",
-  "version": "1.0.1",
-  "description": "A simple Vue.js gantt chart plugin for presenting weekly tasks.",
+  "version": "2.0.0",
+  "description": "A modern Vue 3 gantt chart component for presenting weekly tasks.",
+  "type": "module",
   "main": "dist/vue-easy-gantt.js",
+  "module": "dist/vue-easy-gantt.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-easy-gantt.mjs",
+      "require": "./dist/vue-easy-gantt.js"
+    },
+    "./style.css": "./dist/style.css",
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist",
     "src"
   ],
+  "sideEffects": [
+    "*.css"
+  ],
   "author": {
-    "name": "mamboer",
-    "email": "mamboer@gmail.com",
-    "url": "https://aotu.io"
+    "name": "ZEO",
+    "email": "no-reply@ai.xsin.work",
+    "url": "https://github.com/aispin"
   },
-  "scripts": {
-    "dev": "node build/dev-server.js",
-    "build": "node build/build.js",
-    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
-    "unit1": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-    "test": "npm run unit",
-    "lint": "eslint --ext .js,.vue src test/unit/specs",
-    "release": "bash ./release.sh",
-    "commit": "git-cz",
-    "changelog": "node build/changelog.js",
-    "deploy": "sh ./.travis/deploy.sh",
-    "clean": "rm -rf dist"
-  },
+  "license": "MIT",
   "keywords": [
     "vue",
+    "vue3",
     "vue components",
     "gantt",
     "gantt chart",
@@ -34,96 +36,51 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mamboer/vue-easy-gantt.git"
+    "url": "git+https://github.com/aispin/vue-easy-gantt.git"
   },
   "bugs": {
-    "url": "https://github.com/mamboer/vue-easy-gantt/issues"
+    "url": "https://github.com/aispin/vue-easy-gantt/issues"
   },
-  "homepage": "https://github.com/mamboer/vue-easy-gantt",
+  "homepage": "https://github.com/aispin/vue-easy-gantt#readme",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --config vite.lib.config.js",
+    "build:demo": "vite build --base=/vue-easy-gantt/",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "vue-tsc --noEmit",
+    "lint": "eslint .",
+    "pages": "bash ./scripts/deploy-pages.sh"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
   "devDependencies": {
-    "autoprefixer": "^6.7.7",
-    "babel-core": "^6.24.0",
-    "babel-eslint": "^7.2.1",
-    "babel-loader": "^6.4.1",
-    "babel-plugin-istanbul": "^4.1.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.3.2",
-    "babel-preset-stage-2": "^6.22.0",
-    "babel-register": "^6.24.0",
-    "chai": "^3.5.0",
-    "chalk": "^1.1.3",
-    "commitizen": "^2.9.6",
-    "connect-history-api-fallback": "^1.3.0",
-    "conventional-changelog": "^1.1.3",
-    "copy-webpack-plugin": "^4.0.1",
-    "cross-env": "^4.0.0",
-    "css-loader": "^0.28.0",
-    "cz-conventional-changelog": "^2.0.0",
-    "eslint": "^3.19.0",
-    "eslint-config-standard": "^7.1.0",
-    "eslint-friendly-formatter": "^2.0.7",
-    "eslint-loader": "^1.7.1",
-    "eslint-plugin-html": "^2.0.1",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^2.1.1",
-    "eventsource-polyfill": "^0.9.6",
-    "express": "^4.15.2",
-    "extract-text-webpack-plugin": "^2.1.0",
-    "file-loader": "^0.11.1",
-    "friendly-errors-webpack-plugin": "^1.6.1",
-    "function-bind": "^1.1.0",
-    "html-webpack-plugin": "^2.28.0",
-    "http-proxy-middleware": "^0.17.4",
-    "inject-loader": "^3.0.0",
-    "json-loader": "^0.5.7",
-    "karma": "^1.5.0",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-coverage": "^1.1.1",
-    "karma-mocha": "^1.3.0",
-    "karma-phantomjs-launcher": "^1.0.4",
-    "karma-sinon-chai": "^1.2.4",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-spec-reporter": "0.0.30",
-    "karma-webpack": "^2.0.3",
-    "lolex": "^1.6.0",
-    "mocha": "^3.2.0",
-    "opn": "^4.0.2",
-    "optimize-css-assets-webpack-plugin": "^1.3.0",
-    "ora": "^1.2.0",
-    "phantomjs-prebuilt": "^2.1.14",
-    "pre-commit": "^1.2.2",
-    "rimraf": "^2.6.1",
-    "semver": "^5.3.0",
-    "sinon": "^2.1.0",
-    "sinon-chai": "^2.9.0",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.1",
-    "url-loader": "^0.5.8",
-    "vue-loader": "^11.3.4",
-    "vue-resource": "^1.2.1",
-    "vue-style-loader": "^2.0.5",
-    "vue-template-compiler": "^2.2.6",
-    "webpack": "^2.3.3",
-    "webpack-bundle-analyzer": "^2.3.1",
-    "webpack-dev-middleware": "^1.10.1",
-    "webpack-hot-middleware": "^2.18.0",
-    "webpack-merge": "^4.1.0"
+    "@types/node": "^26.6.5",
+    "@types/three": "^0.186.0",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "@vue/test-utils": "^2.5.1",
+    "eslint": "^10.13.0",
+    "eslint-plugin-vue": "^10.11.1",
+    "jiti": "^2.7.0",
+    "jsdom": "^30.1.3",
+    "three": "^0.186.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.0",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5",
+    "vue": "^3.5.44",
+    "vue-tsc": "^3.3.13"
   },
-  "license": "MIT",
-  "pre-commit": [
-    "lint"
-  ],
   "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
+    "defaults",
+    "not IE 11"
   ],
   "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
+    "node": ">=20"
   },
   "dependencies": {
-    "moment": "^2.18.1",
-    "vue": "^2.2.6"
+    "dayjs": "^1.11.23"
   }
 }

@@ -8,24 +8,22 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo "Releasing $VERSION ..."
 
-  # lint and test
-  npm run lint 2>/dev/null
-  npm run unit1 2>/dev/null
+  # lint, typecheck and test
+  npm run lint
+  npm run typecheck
+  npm test
 
   # build
   npm run build
 
-  # commit
+  # commit + tag
   git add -A
   git commit -m "Build for $VERSION"
   npm version $VERSION -m "Upgrade to $VERSION"
 
-  # publish
-  npm publish
-  echo "Publish $VERSION successfully!"
-
-  # push
+  # push (the v-tag triggers the npm publish workflow in GitHub Actions,
+  # which needs the NPM_TOKEN repository secret)
   git push origin refs/tags/v$VERSION
   git push
-  echo "Done!"
+  echo "Done! CI is publishing $VERSION to npm."
 fi

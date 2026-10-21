@@ -1,0 +1,358 @@
+/* vue-easy-gantt — modern design tokens & styles (dark glass default) */
+
+.at-eg {
+  /* ---- tokens: dark glass (default) ---- */
+  --eg-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --eg-radius: 16px;
+  --eg-radius-sm: 10px;
+  --eg-surface: rgba(13, 20, 36, 0.62);
+  --eg-surface-solid: #0d1424;
+  --eg-header-bg: rgba(148, 163, 184, 0.07);
+  --eg-header-bg-solid: rgba(13, 20, 36, 0.94);
+  --eg-border: rgba(148, 163, 184, 0.16);
+  --eg-text: #e6edf7;
+  --eg-muted: #8fa3bf;
+  --eg-accent: #22d3ee;
+  --eg-accent-2: #a78bfa;
+  --eg-task-grad: linear-gradient(135deg, rgba(34, 211, 238, 0.95), rgba(129, 140, 248, 0.95));
+  --eg-task-text: #f8fbff;
+  --eg-task-shadow: 0 6px 18px rgba(34, 211, 238, 0.22);
+  --eg-row-hover: rgba(34, 211, 238, 0.06);
+  --eg-today-bg: rgba(34, 211, 238, 0.09);
+  --eg-weekend-bg: rgba(2, 6, 23, 0.28);
+  --eg-scroll: rgba(148, 163, 184, 0.35);
+  --eg-mask: rgba(2, 6, 23, 0.45);
+  --eg-task-h: 40px;
+  --eg-task-gap: 10px;
+  --eg-col0-w: 190px;
+  --eg-table-min-w: 780px;
+  --eg-shadow: 0 18px 50px rgba(2, 6, 23, 0.35);
+
+  position: relative;
+  font-family: var(--eg-font);
+  font-size: 14px;
+  color: var(--eg-text);
+  background: var(--eg-surface);
+  border-radius: var(--eg-radius);
+  box-shadow: var(--eg-shadow);
+  overflow: hidden;
+}
+
+/* ---- light theme ---- */
+.at-eg--light {
+  --eg-surface: #ffffff;
+  --eg-surface-solid: #ffffff;
+  --eg-header-bg: rgba(15, 23, 42, 0.04);
+  --eg-header-bg-solid: rgba(255, 255, 255, 0.94);
+  --eg-border: rgba(15, 23, 42, 0.1);
+  --eg-text: #1e293b;
+  --eg-muted: #64748b;
+  --eg-row-hover: rgba(34, 211, 238, 0.08);
+  --eg-today-bg: rgba(34, 211, 238, 0.1);
+  --eg-weekend-bg: rgba(15, 23, 42, 0.04);
+  --eg-scroll: rgba(15, 23, 42, 0.2);
+  --eg-mask: rgba(255, 255, 255, 0.6);
+  --eg-shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
+}
+
+/* ---- scroll container ---- */
+.at-eg-scroll {
+  position: relative;
+  overflow: auto;
+  max-height: var(--eg-max-h, none);
+  scrollbar-width: thin;
+  scrollbar-color: var(--eg-scroll) transparent;
+}
+.at-eg-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.at-eg-scroll::-webkit-scrollbar-thumb {
+  background: var(--eg-scroll);
+  border-radius: 8px;
+}
+.at-eg-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---- table ---- */
+.at-eg-tb {
+  width: 100%;
+  min-width: var(--eg-table-min-w);
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+/* ---- header ---- */
+.at-eg-hd-th,
+.at-eg-tb thead th {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  padding: 12px 8px;
+  text-align: center;
+  font-weight: 600;
+  background: var(--eg-header-bg-solid);
+  border-left: 1px solid var(--eg-border);
+  border-bottom: 1px solid var(--eg-border);
+}
+.at-eg-tb thead th:first-child {
+  border-left: 0;
+}
+.at-eg-cell-first {
+  left: 0;
+  z-index: 16;
+  width: var(--eg-col0-w);
+  color: var(--eg-muted);
+}
+.at-eg-wd {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--eg-muted);
+}
+.at-eg-dt {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--eg-text);
+  font-variant-numeric: tabular-nums;
+}
+.at-eg-today .at-eg-dt {
+  color: var(--eg-accent);
+}
+.at-eg-chip {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 1px 8px;
+  border-radius: 99px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background: var(--eg-accent);
+  color: #04222b;
+}
+
+/* ---- body cells ---- */
+.at-eg-cell-a {
+  position: sticky;
+  left: 0;
+  z-index: 12;
+  width: var(--eg-col0-w);
+  vertical-align: top;
+  background: var(--eg-surface-solid);
+  border-right: 1px solid var(--eg-border);
+}
+.at-eg-cell-b {
+  position: relative;
+  z-index: calc(7 - var(--eg-col, 0));
+  vertical-align: top;
+  padding: 0;
+  border-left: 1px solid var(--eg-border);
+}
+/* tints as background-image so hover (background-color) composes with them */
+.at-eg-today {
+  background-image: linear-gradient(var(--eg-today-bg), var(--eg-today-bg));
+}
+.at-eg-weekend {
+  background-image: linear-gradient(var(--eg-weekend-bg), var(--eg-weekend-bg));
+}
+.at-eg-row:hover .at-eg-cell-a,
+.at-eg-row:hover .at-eg-cell-b {
+  background-color: var(--eg-row-hover);
+}
+.at-eg-row:hover .at-eg-cell-a {
+  background-image: linear-gradient(var(--eg-row-hover), var(--eg-row-hover));
+}
+
+/* ---- user cell ---- */
+.at-eg-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+}
+.at-eg-avatar {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--eg-header-bg);
+  border: 1px solid var(--eg-border);
+}
+.at-eg-avatar--fb {
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: var(--eg-accent);
+}
+.at-eg-user-meta {
+  min-width: 0;
+}
+.at-eg-name {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.at-eg-sub {
+  margin: 2px 0 0;
+  font-size: 11px;
+  color: var(--eg-muted);
+}
+
+/* ---- task bars ---- */
+.at-eg-tgroup {
+  position: relative;
+  min-height: calc(var(--eg-tall, 1) * (var(--eg-task-h) + var(--eg-task-gap)) + var(--eg-task-gap));
+}
+.at-eg-task {
+  position: absolute;
+  left: var(--eg-task-gap);
+  top: calc(var(--eg-task-gap) + var(--eg-floor) * (var(--eg-task-h) + var(--eg-task-gap)));
+  width: calc(100% * var(--eg-len) - var(--eg-task-gap) * 2);
+}
+.at-eg-task-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--eg-task-h);
+  padding: 0 12px;
+  border-radius: var(--eg-radius-sm);
+  background: var(--eg-color, var(--eg-task-grad));
+  color: var(--eg-task-text);
+  box-shadow: var(--eg-task-shadow);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+.at-eg-task-bar:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 10px 26px rgba(34, 211, 238, 0.35);
+}
+.at-eg-task:focus-visible {
+  outline: none;
+}
+.at-eg-task:focus-visible .at-eg-task-bar {
+  outline: 2px solid var(--eg-accent);
+  outline-offset: 2px;
+}
+.at-eg-task-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.at-eg-task-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: rgba(2, 6, 23, 0.22);
+}
+.at-eg-task-progress > i {
+  display: block;
+  height: 100%;
+  /* dark ink reads on every bar color and never blends with a light card */
+  background: rgba(2, 6, 23, 0.62);
+}
+
+/* ---- loading mask & spinner ---- */
+.at-eg-mask {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  background: var(--eg-mask);
+  backdrop-filter: blur(3px);
+}
+.at-eg-spinner--ring {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: conic-gradient(from 0turn, transparent 0%, var(--eg-accent));
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 4px), #000 0);
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 4px), #000 0);
+  animation: at-eg-spin 1s linear infinite;
+}
+.at-eg-spinner--dots {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  margin: 0 18px;
+  border-radius: 50%;
+  background: var(--eg-accent);
+  animation: at-eg-dot 1s infinite ease-in-out;
+  animation-delay: 0.15s;
+}
+.at-eg-spinner--dots::before,
+.at-eg-spinner--dots::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--eg-accent);
+  animation: at-eg-dot 1s infinite ease-in-out;
+}
+.at-eg-spinner--dots::before {
+  left: -18px;
+}
+.at-eg-spinner--dots::after {
+  right: -18px;
+  animation-delay: 0.3s;
+}
+
+/* ---- empty state ---- */
+.at-eg-empty {
+  padding: 48px 16px;
+  text-align: center;
+  color: var(--eg-muted);
+}
+.at-eg-empty svg {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 10px;
+  opacity: 0.6;
+}
+.at-eg-empty p {
+  margin: 0;
+  font-size: 13px;
+}
+
+@keyframes at-eg-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes at-eg-dot {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .at-eg-spinner--ring,
+  .at-eg-spinner--dots,
+  .at-eg-spinner--dots::before,
+  .at-eg-spinner--dots::after {
+    animation: none;
+  }
+  .at-eg-task-bar {
+    transition: none;
+  }
+}
