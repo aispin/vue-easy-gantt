@@ -30,8 +30,13 @@ jobs:
           npm test
           npm run build
 
-      # requires the NPM_TOKEN repository secret (npm automation token)
+      # npm trusted publishing via GitHub Actions OIDC — no token needed.
+      # Prerequisites (one-time, on npmjs.com):
+      #   Settings → Publishing → Trusted Publisher
+      #   repository: aispin/vue-easy-gantt, workflow file: publish-npm.yml
+      # Requires npm >= 11.5.1 (Node 22 bundles npm 10.x, so upgrade first).
+      - name: Upgrade npm
+        run: npm install -g npm@latest
+
       - name: Publish
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
