@@ -13,11 +13,11 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: 22
+          node-version: 24
           registry-url: 'https://registry.npmjs.org'
           cache: npm
 
@@ -33,8 +33,8 @@ jobs:
       # npm trusted publishing via GitHub Actions OIDC — no token needed.
       # Prerequisites (one-time, on npmjs.com):
       #   Settings → Publishing → Trusted Publisher
-      #   repository: aispin/vue-easy-gantt, workflow file: publish-npm.yml
-      # Requires npm >= 11.5.1 (Node 22 bundles npm 10.x, so upgrade first).
+      #   repository: aispin/vue-easy-gantt, workflow file: publish.yml
+      # Requires npm >= 11.5.1 (bundled npm may be older, so upgrade first).
       - name: Upgrade npm
         run: npm install -g npm@latest
 
